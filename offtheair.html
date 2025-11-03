@@ -1,49 +1,111 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>My Torrent Archive</title>
   <style>
-    body {
-      background-color: #101010;
-      color: #e0e0e0;
-      font-family: Arial, sans-serif;
-      max-width: 700px;
-      margin: 2em auto;
-      padding: 1em;
-      line-height: 1.5;
+    :root {
+      --bg:#0e0f12; --fg:#e7e7ea; --muted:#a6a6ad; --card:#15171c; --accent:#41c3ff;
+      --border:#2a2d36;
     }
-    h1 { color: #44c0ff; }
-    .torrent {
-      border-bottom: 1px solid #333;
-      padding: 1em 0;
+    *{box-sizing:border-box}
+    body{
+      margin:0; background:var(--bg); color:var(--fg);
+      font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
     }
-    .button {
-      display: inline-block;
-      background: #44c0ff;
-      color: #000;
-      padding: 8px 14px;
-      border-radius: 5px;
-      text-decoration: none;
-      font-weight: bold;
-      margin-top: 6px;
+    header{max-width:980px;margin:32px auto 16px;padding:0 16px}
+    h1{margin:0 0 8px;color:var(--accent);font-weight:800;letter-spacing:.2px}
+    .sub{color:var(--muted);margin:0}
+    .grid{
+      max-width:980px; margin:16px auto 48px; padding:0 16px;
+      display:grid; gap:16px;
+      grid-template-columns: repeat(auto-fill, minmax(260px,1fr));
     }
-    .button:hover {
-      background: #88ddff;
+    .card{
+      background:var(--card); border:1px solid var(--border);
+      border-radius:14px; overflow:hidden; display:flex; flex-direction:column;
+      transition:transform .12s ease, box-shadow .12s ease, border-color .12s ease;
     }
+    .card:hover{ transform:translateY(-2px);
+      box-shadow:0 8px 24px rgba(0,0,0,.35); border-color:#3a3f4a;
+    }
+    .cover{width:100%; aspect-ratio:1/1; object-fit:cover; background:#0b0c10}
+    .content{padding:12px 12px 14px}
+    .title{margin:0 0 4px; font-weight:700}
+    .meta{margin:0 0 10px; color:var(--muted); font-size:14px}
+    .row{display:flex; gap:8px; flex-wrap:wrap}
+    .btn{
+      appearance:none; cursor:pointer; border:1px solid var(--border);
+      background:var(--accent); color:#091018; font-weight:700;
+      padding:8px 12px; border-radius:10px; text-decoration:none; display:inline-flex; align-items:center; gap:6px;
+    }
+    .btn.secondary{ background:transparent; color:var(--fg); border-color:#3a3f4a }
+    .btn:active{ transform:translateY(1px) }
+    footer{max-width:980px;margin:0 auto 40px;padding:0 16px;color:var(--muted);font-size:14px}
+    code{background:#0b0c12; padding:2px 6px; border-radius:6px; border:1px solid var(--border)}
   </style>
 </head>
 <body>
 
-<h1>My Torrent Archive</h1>
+<header>
+  <h1>My Torrent Archive</h1>
+  <p class="sub">Lossless rips • magnets only • seeded regularly, all media</p>
+</header>
 
-<div class="torrent">
-  <h2>Artist – Album (2024) [FLAC]</h2>
-  <p>Size: 1.2 GB | Format: FLAC</p>
-  <a class="button" href="magnet:?xt=urn:btih:C78EACEFB01FAC68371C75F0CD013FB97C2C38A0&dn=Off%20The%20Air&tr=udp%3a%2f%2ftracker.opentrackr.org%3a1337%2fannounce&tr=udp%3a%2f%2ftracker.theoks.net%3a6969%2fannounce&tr=udp%3a%2f%2ftracker.srv00.com%3a6969%2fannounce&tr=udp%3a%2f%2ftracker.qu.ax%3a6969%2fannounce&tr=udp%3a%2f%2ftracker.kmzs123.cn%3a17272%2fannounce&tr=udp%3a%2f%2ftracker.gmi.gd%3a6969%2fannounce&tr=udp%3a%2f%2ftracker.fnix.net%3a6969%2fannounce&tr=udp%3a%2f%2ftracker.ducks.party%3a1984%2fannounce&tr=udp%3a%2f%2ftracker-udp.gbitt.info%3a80%2fannounce&tr=udp%3a%2f%2ftr4ck3r.duckdns.org%3a6969%2fannounce&tr=udp%3a%2f%2ftorrentclub.online%3a54123%2fannounce&tr=udp%3a%2f%2ft.overflow.biz%3a6969%2fannounce&tr=udp%3a%2f%2frun.publictracker.xyz%3a6969%2fannounce&tr=udp%3a%2f%2fretracker01-msk-virt.corbina.net%3a80%2fannounce&tr=udp%3a%2f%2fretracker.lanta.me%3a2710%2fannounce&tr=%2audp%3a%2f%2fpublic.tracker.vraphim.com%3a6969%2fannounce">
-    🔗 Download via Magnet
-  </a>
-</div>
+<section class="grid" id="grid">
+  <!-- 🔁 DUPLICATE THIS CARD FOR EACH TORRENT -->
+  <article class="card">
+    <img class="cover" src="covers/album1.jpg" alt="Artist – Album (2024) cover">
+    <div class="content">
+      <h3 class="title">Artist – Album (2024) [FLAC]</h3>
+      <p class="meta">Size: 1.23 GB • Format: FLAC • Extras: cue, scans, checksums</p>
+      <div class="row">
+        <a class="btn" href="magnet:?xt=urn:btih:PUT-YOUR-MAGNET-HERE&dn=Artist-Album-2024-FLAC">
+          🔗 Download via Magnet
+        </a>
+        <button class="btn secondary" data-magnet="magnet:?xt=urn:btih:PUT-YOUR-MAGNET-HERE&dn=Artist-Album-2024-FLAC">
+          📋 Copy Magnet
+        </button>
+      </div>
+    </div>
+  </article>
+
+  <!-- Example #2 -->
+  <article class="card">
+    <img class="cover" src="covers/album2.jpg" alt="Another Artist – Record (2019) cover">
+    <div class="content">
+      <h3 class="title">Another Artist – Record (2019) [FLAC]</h3>
+      <p class="meta">Size: 842 MB • Format: FLAC • Extras: md5, booklet</p>
+      <div class="row">
+        <a class="btn" href="magnet:?xt=urn:btih:PUT-SECOND-MAGNET-HERE">
+          🔗 Download via Magnet
+        </a>
+        <button class="btn secondary" data-magnet="magnet:?xt=urn:btih:PUT-SECOND-MAGNET-HERE">
+          📋 Copy Magnet
+        </button>
+      </div>
+    </div>
+  </article>
+</section>
+
+<footer>
+  <p>Tip: paste your entire magnet URI between quotes — even if it’s huge. You can add covers by uploading images to a <code>covers/</code> folder in this repo and referencing them as <code>covers/filename.jpg</code>.</p>
+</footer>
+
+<script>
+  // Copy Magnet button logic
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-magnet]');
+    if (!btn) return;
+    const uri = btn.getAttribute('data-magnet');
+    navigator.clipboard.writeText(uri).then(() => {
+      const old = btn.textContent;
+      btn.textContent = '✅ Copied!';
+      setTimeout(()=> btn.textContent = old, 1200);
+    }).catch(()=> alert('Clipboard blocked — long-press to copy.'));
+  });
+</script>
 
 </body>
 </html>
